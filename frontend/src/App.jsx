@@ -13,7 +13,6 @@ import CommunityForumPage from "./CommunityForumPage";
 import AskAiPage from "./AskAiPage";
 import ChallengePage from "./pages/ChallengePage";
 import InterviewPageAI from "./InterviewPageAI";
-import LinkedinLogin from "./component/LinkedinLogin";
 import LoadingSpinner from "./component/LoadingSpinner";
 
 const NotFound = () => {
