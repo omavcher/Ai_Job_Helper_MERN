@@ -13,9 +13,7 @@ import CommunityForumPage from "./CommunityForumPage";
 import AskAiPage from "./AskAiPage";
 import ChallengePage from "./pages/ChallengePage";
 import InterviewPageAI from "./InterviewPageAI";
-import TextToSpeech from "./component/TextToSpeech";
 import LinkedinLogin from "./component/LinkedinLogin";
-import Spp from "./component/spp";
 import LoadingSpinner from "./component/LoadingSpinner";
 
 const NotFound = () => {
@@ -50,9 +48,7 @@ function App() {
           <Route path="/mock-interview/ai/interview" element={isAuthenticated ? <InterviewPageAI /> : <Navigate to="/login" />} />
 
           {/* Other Routes */}
-          <Route path="/see" element={<TextToSpeech />} />
           <Route path="/lin" element={<LoadingSpinner />} />
-          <Route path="/spp" element={<Spp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
