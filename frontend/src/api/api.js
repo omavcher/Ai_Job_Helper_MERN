@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api', // Adjust base URL
+  baseURL: process.env.REACT_APP_API_URL || 'https://ai-job-helper-mern.onrender.com/api', // Adjust base URL
   timeout: 10000, // Request timeout (10 seconds)
 });
 
