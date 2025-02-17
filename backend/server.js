@@ -10,7 +10,12 @@ require('dotenv').config();
 const app = express();
 
 // Middleware
-app.use(cors()); // Enable CORS
+app.use(cors({
+  origin: 'https://ai-job-helper-mern.vercel.app', // Replace with your frontend URL if different
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 app.use(express.json()); // Parse incoming JSON requests
 app.use(helmet()); // Security headers
 app.use(morgan('dev')); // Logging HTTP requests
