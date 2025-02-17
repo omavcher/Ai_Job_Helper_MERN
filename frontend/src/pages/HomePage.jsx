@@ -36,7 +36,6 @@ const HomePage = () => {
               Ask AI
             </button>
             <button className='jijc-btn-hm' onClick={handleRedirectjonb}>Job Roadmaps</button>
-            <button className='jijc-btn-hm' onClick={handleRedirectforme}>Community Forum</button>
           </span>
         </div>
       </div>
