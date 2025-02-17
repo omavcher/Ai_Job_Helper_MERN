@@ -1,0 +1,335 @@
+.build-resume-container-build{
+    width: 100%;
+    height: 100%;
+}
+
+.build-resume-container-build {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+  }
+  
+  .build-resume-left-section8 {
+    flex: 1;
+    padding: 20px;
+    border-right: 2px solid #ddd;
+  }
+  
+  .theme-button {
+    margin-bottom: 20px;
+    padding: 6px 12px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border: 0.5px solid rgba(0, 0, 0, 0.363);
+    border-radius: 5px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  form label {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  
+  form input, form textarea {
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  textarea {
+    min-height: 100px;
+  }
+  
+
+  
+  .preview-resume-left-section8 {
+    width: 800px;
+    flex: 1;
+    padding: 20px;
+  }
+  
+
+  .resume-doc {
+    max-width: 100%;  /* Set a flexible width */
+    height: 45rem;  /* Allow height to adjust based on content */
+    border: 1px solid #ddd;
+    font-family: "Tajawal", serif;
+  }
+  
+  .resume-doc header {
+    width: 100%;
+    height: 1rem;
+  }
+  
+  .resume-doc-user-detail h1 {
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+  
+  .resume-doc-user-detail-spand{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    font-size: 0.8rem;
+    padding-bottom: 10px;
+  }
+
+
+
+  .resume-doc-user-skills-area{
+    padding: 4px 15px;
+    font-size: 0.78rem;
+  }
+
+  .resume-doc-professnal-experina-sa header{
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 1rem;
+   padding-bottom: 20px;
+  }
+
+  .oc-dsjohofs{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    font-size: 0.78rem;
+
+  }
+
+
+  .resume-doc-educta-5dvdxv header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    padding-bottom: 20px;
+  }
+
+  .resumecdcdcd-5dvdxv header{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    padding-bottom: 20px;
+  }
+
+  .profesnal-inpiscc33{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .profesnal-inpiscc3-sectin-1{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .profesnal-inpiscc3-sectin-1 label{
+    font-size: 0.8rem;
+    width: 45%;
+  }
+
+  .profesnal-inpiscc3-sectin-1 input{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .profesnal-inpiscc3-sectin-1 input:focus {
+    border: 2px solid #cab3f8;
+    box-shadow: 0 0 5px rgba(180, 151, 237, 0.6);
+  }
+
+  .ai-btn-sunds-contai{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+
+  .ai-summ-btn4{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid #a36ef9;
+    padding: 3px 9px;
+    color:#8b51e8 ;
+    border-radius: 5px;
+  }
+
+  .textsf-ai-sun{
+    width: 100%;
+    height: 150px;
+    resize: none;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  .textsf-ai-sun:focus {
+    border: 2px solid #cab3f8;
+    box-shadow: 0 0 5px rgba(180, 151, 237, 0.6);
+  }
+
+  .nest-padj-e{
+    display: flex;
+    gap: 5px;
+  }
+
+  .nest-padj-e button{
+    padding: 0 20px;
+    font-size: 1.2rem;
+  }
+
+  .color-picker-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .color-picker-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .color-options {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+  }
+
+  .color-options button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .color-options button:hover {
+    transform: scale(1.1);
+  }
+
+  .close-btn {
+    width: 100%;
+    padding: 8px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .close-btn:hover {
+    background-color: #e0e0e0;
+  }
+
+  .form-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .download-pdf-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease;
+  }
+
+  .download-pdf-btn:hover {
+    background-color: #45a049;
+  }
+
+  .download-pdf-btn i {
+    font-size: 18px;
+  }
+
+  .add-education-btn {
+    background-color: #4a90e2;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+  }
+
+  .add-education-btn:hover {
+    background-color: #357abd;
+  }
+
+  .add-education-btn i {
+    font-size: 12px;
+  }
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+
+  select:focus {
+    border: 2px solid #cab3f8;
+    box-shadow: 0 0 5px rgba(180, 151, 237, 0.6);
+  }
+
+  

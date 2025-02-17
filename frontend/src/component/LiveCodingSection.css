@@ -1,0 +1,129 @@
+.live-coding-section {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    padding: 20px;
+    background: transparent;
+    color: #333;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.live-coding-section h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.live-coding-section p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.code-editor-ooojce5 {
+    background: #eae3f0;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    font-family: "Fira Code", monospace;
+    font-size: 1rem;
+    position: relative;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    line-height: 1.5;
+    border: 1px solid #ddd;
+    height: 130px; /* Fixed height */
+    display: flex;
+    align-items: center;
+}
+
+/* VS Code Syntax Highlighting */
+.keyword {
+    color: #d73a49;
+    font-weight: bold;
+}
+
+.function {
+    color: #6f42c1;
+}
+
+.string {
+    color: #22863a;
+}
+
+.comment {
+    color: #6a737d;
+    font-style: italic;
+}
+
+.cursor {
+    color: #0056b3;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+.try-now-btn {
+    background-image: linear-gradient(160deg, #7671e0 0%, #8b7ef2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.try-now-btn:hover {
+    background-image: linear-gradient(160deg, #4640b8 0%, #9636fe 100%);
+}
+
+
+
+.fullscreen-livc {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .fullscreen-livc:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  
+  @media (max-width: 768px) { /* Adjust the max-width as needed */
+    .code-editor-ooojce5 {
+width: 245px;
+
+    }
+
+    .resume-analyzer {
+width: 270px;
+
+    }
+
+    .live-coding-section{
+        width: 280px;
+    }
+    .jijc-btn-hm{
+        padding: 0.2rem 0.3rem;
+    }
+
+
+    .job-roadmaps-section{
+width: 280px;
+margin: 0;
+    }
+  }

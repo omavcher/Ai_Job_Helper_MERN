@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+.vertical-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 18px;
+  height: 100%;
+  width: 4px;
+  background: #000;
+}
+
+.heading-font {
+    font-family: 'Exo 2', serif;
+  }
+  .body,html{
+    font-family: 'Poppins', sans-serif;
+  }
+
+  

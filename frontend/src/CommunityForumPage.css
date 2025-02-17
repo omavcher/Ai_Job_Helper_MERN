@@ -1,0 +1,144 @@
+
+
+.community-forum-container {
+  padding: 30px;
+  width: 150%;
+  margin-left: 2rem;
+}
+
+h1 {
+  text-align: center;
+  font-size: 36px;
+  color: #4a4a4a;
+  margin-bottom: 20px;
+}
+
+h3, h4 {
+  color: #333;
+}
+
+/* Header Section */
+.forum-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.category-dropdown, .search-bar {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.category-dropdown:hover, .search-bar:hover {
+  border-color: #007bff;
+}
+
+/* Threads Section */
+.forum-threads {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.forum-thread {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.forum-thread h3 {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.thread-voting {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.thread-voting button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.thread-voting button:hover {
+  background-color: #0056b3;
+}
+
+.thread-comments {
+  margin-top: 15px;
+}
+
+.comment {
+  margin-bottom: 12px;
+}
+
+.comment p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Mentorship Section */
+.mentorship-section {
+  margin-top: 50px;
+  text-align: center;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.mentorship-btns {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.mentorship-btn {
+  padding: 12px 25px;
+  font-size: 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.mentorship-btn:hover {
+  background-color: #218838;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .forum-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .mentorship-btns {
+    flex-direction: column;
+  }
+
+  .mentorship-btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

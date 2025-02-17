@@ -1,0 +1,73 @@
+.signup-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+p {
+  font-size: 14px;
+  color: #666;
+}
+
+.step-container {
+  margin-top: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  color: #444;
+  margin-bottom: 15px;
+}
+
+label {
+  font-size: 14px;
+  color: #555;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.job-select,
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.next-button, .signup-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff;
+  transition: background 0.3s;
+}
+
+.next-button {
+  background: #4CAF50;
+}
+
+.signup-button {
+  background: #007BFF;
+}
+
+.next-button:hover {
+  background: #45a049;
+}
+
+.signup-button:hover {
+  background: #0056b3;
+}

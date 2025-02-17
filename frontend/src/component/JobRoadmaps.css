@@ -1,0 +1,81 @@
+.job-roadmaps-section {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background: transparent;
+    color: #333;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
+    position: relative;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.job-roadmaps-section h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.job-roadmaps-section p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.roadmap-preview {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    transition: 0.5s ease-in-out;
+}
+
+.roadmap-preview h3 {
+    color: #007bff;
+    transition: 0.3s ease-in-out;
+}
+
+.view-roadmap-btn {
+    background-image: linear-gradient(160deg, #7671e0 0%, #8b7ef2 100%);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: bold;
+}
+
+.view-roadmap-btn:hover {
+    background-image: linear-gradient(160deg, #4640b8 0%, #9636fe 100%);
+}
+
+
+.fullscreen-jobr {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .fullscreen-jobr:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  

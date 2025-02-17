@@ -1,0 +1,342 @@
+.challenge-page-container {
+    width: 85%;
+    font-family: Arial, sans-serif;
+    padding: 0 20px;
+  }
+  
+  .top-buttons {
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  
+  .top-buttons button {
+    padding: 10px;
+    margin-left: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .top-buttons button:hover {
+    background-color: #0056b3;
+  }
+  
+  .page-content {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .left-pane {
+    max-width: 640px;
+    min-width: 625px;
+    height: auto;
+    flex: 1;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .right-pane {
+    height: min-content;
+    flex: 1;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .challenge-details {
+    margin-bottom: 20px;
+  }
+  
+  .challenge-details h3 {
+    margin-top: 0;
+  }
+  
+  .challenge-solution pre {
+    background-color: #e8e8e8;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+  }
+  
+  .code-playground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  
+  .code-editor {
+    width: 100%;
+    height: 400px;
+    font-family: monospace;
+    background-color: #1e1e1e;
+    color: #dcdcdc;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    resize: none;
+  }
+  
+  .code-editor:focus {
+    outline: none;
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  .chllange-top-hearder-container{
+    padding: 0 10px;
+    width: 155%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .chllange-top-hearder-tank-11{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .chllange-top-hearder-tank-11 img{
+    height: 20px;
+    width: 20px;
+    object-fit: cover;
+  }
+  .chllange-top-hearder-tank-22{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .chllange-top-hearder-tank-22 img{
+    height: 20px;
+    width: 20px;
+    object-fit: cover;
+  }
+
+  .chllange-top-hearder-container button{
+      padding: 8px 12px;
+      border-radius: 5px;
+  }
+
+
+  .chllange-top-hearder-container button:hover{
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+        background: #e0defc;
+  }
+
+  .challenge-details-hear-container{
+    width: 100%;
+    height: auto;
+
+  }
+
+  .challenge-details-hear-container h1{
+    font-size: 1rem;
+    text-align: start;
+    font-weight: 600;
+  }
+
+  .challenge-details-hear-tag-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+
+  .challenge-details-hear-tag-container span{
+    padding: 5px 13px;
+    border-radius: 5px;
+    background-color: #f6f6f6;
+    font-size: 0.8rem;
+  }
+
+  .code-playground-header-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+
+/* Side panel style for problem list */
+.chlladproblem-list {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 600px;
+  height: 100%;
+  background-color: #f9f9f9;
+  box-shadow: 4px 0px 15px rgba(0, 0, 0, 0.1);
+  transform: translateX(-100%); /* Initially hidden */
+  transition: transform 0.3s ease-in-out;
+  z-index: 10000;
+  padding: 0px;
+  overflow-y: auto;
+}
+
+.chlladproblem-list.show {
+  transform: translateX(0); /* Show the problem list */
+}
+
+/* Content outside the problem list, when it's open */
+.blurred {
+  filter: blur(5px);
+  transition: filter 0.3s ease;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Header styling */
+.cc-problem-header-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  border-bottom: 2px solid #ddd;
+}
+
+.cc-problem-header-container h1 {
+  color: #333;
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cc-problem-header-container h1 svg {
+  color: #333;
+  cursor: pointer;
+}
+
+.cc-problem-header-container button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* Problem filter section */
+.problem-list-serise-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.problem-list-serise-filter button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.problem-list-serise-filter input {
+  width: 90%;
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.problem-list-serise-filter input:focus {
+  border-color: #007bff;
+}
+
+/* Problem list content section */
+.problem-list-qued-d {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.problem-list-qued-d-condd {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background-color: #f4f4f9;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.problem-list-qued-d span:hover {
+  background-color: #e1e1e8;
+  cursor: pointer;
+}
+
+.problem-list-qued-d span h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.problem-list-qued-d span p {
+  margin: 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+.problem-list-serise-ccx{
+  padding: 15px;
+}
+
+
+.submit-result-container {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.submit-result {
+  font-size: 24px;
+  font-weight: bold;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.submit-result.success {
+  color: green;
+  border: 2px solid green;
+  background-color: rgba(0, 255, 0, 0.1);
+}
+
+.submit-result.fail {
+  color: red;
+  border: 2px solid red;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.submit-conclusion {
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.submit-output {
+  font-size: 16px;
+  color: #555;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f4f4f4;
+  white-space: pre-wrap; /* To keep the formatting of the output */
+  word-wrap: break-word;
+}

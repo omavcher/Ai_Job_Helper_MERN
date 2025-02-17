@@ -1,0 +1,23 @@
+.job-roadmaps-container {
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.career-path-selector {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.role-dropdown {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  width: 100%;
+  max-width: 300px;
+  transition: border-color 0.3s;
+}
+
+.roadmap {
+  margin-top: 20px;
+}

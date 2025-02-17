@@ -1,0 +1,25 @@
+/* App.css */
+body {
+    display: flex;
+    overflow-x: hidden;
+
+  }
+  
+  .main-content {
+    margin-left: 220px; /* Adjust based on the sidebar width */
+    padding: 0px;
+    flex: 1;
+    width: 100%;
+  }
+  
+
+
+
+  @media (max-width: 768px) { /* Adjust the max-width as needed */
+    .main-content {
+      margin-left: 0; /* Adjust based on the sidebar width */
+      padding: 0px;
+      flex: 1;
+      width: 100%;
+    }
+  }

@@ -1,0 +1,142 @@
+.homepage-cointainer{
+    width: 100%;
+    height: auto;
+}
+
+
+.header-info-cointainer-hm{
+    margin-top: 3rem;
+    margin-left: 1rem;
+}
+
+.header-info-cointainer-hm p{
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.header-info-cointainer-hm h2{
+    margin-top: 5px;
+    font-size: 25px;
+    font-weight: bold;
+    
+  }
+  
+  .home-page-hear-btss{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .home-page-hear-btss h1 {
+    font-size: 26px;
+    font-weight: 600;
+    background: linear-gradient(to bottom right, #00d9ff, #CC5DE8, #7b74e1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.home-page-hear-btss-span{
+    display: flex;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.home-page-hear-btss-spanimg{
+    height: 100%;
+}
+
+.jijc-btn-hm {
+    font-size: 0.6rem;
+    padding: 0.4rem 1.2rem; 
+    background-color: white;
+    border-radius: 50px; 
+    border: 1.3px solid transparent; /* Initially transparent */
+    background-image: linear-gradient(white, white), 
+                      linear-gradient(to bottom right, #F72585, #CC5DE8, #52EDFF);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+.ai-ask-btn-hm {
+    padding: 0.4rem 1.2rem; /* Adjusted for better capsule look */
+    background-color: #7671e0;
+    background-image: linear-gradient(160deg, #7671e0 0%, #d6d2f6 100%);
+    border-radius: 50px; /* Ensures a smooth capsule shape */
+    border: none;
+    color: black;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.ai-ask-btn-hm:hover {
+    background-image: linear-gradient(160deg, #5e58d1 0%, #b3aaf3 100%);
+    transform: scale(1.01);
+}
+
+.homepage-section-onainer {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-evenly; 
+    align-items: center; 
+    margin-top: 0.8rem;
+    margin-bottom: 1rem;
+}
+/* 
+@media (max-width: 1024px) {
+    .homepage-section-onainer {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 768px) {
+    .homepage-section-onainer {
+        flex-direction: column;
+        align-items: center;
+    }
+} */
+/* Add farmer-themed background animation */
+
+
+  
+
+@media (max-width: 768px) { /* Adjust the max-width as needed */
+    .homepage-section-onainer {
+     flex-direction: column;
+
+    }
+
+    .home-page-hear-btss{
+        flex-direction: column;
+    }
+
+
+    .header-info-cointainer-hm{
+        margin: 0.5rem;
+    }
+
+    .build-resume-container-build{
+        flex-direction: column;
+    }
+    .profesnal-inpiscc3-sectin-1{
+    }
+    .resume-analyzer-container{
+        width: 915px;
+    }
+    .profesnal-inpiscc3-sectin-1 input{
+        width: 100%;
+    }
+
+    .preview-resume-left-section8 {
+        width: 275px;
+    }
+
+  }

@@ -1,0 +1,99 @@
+/* General Container */
+.coding-practice-container {
+  width:105%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Level Container Box */
+.level-container-box {
+  width: 90%;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.filter-container-coder {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.filter-container-coder select,
+.filter-container-coder input,
+.filter-container-coder button {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
+.filter-container-coder select,
+.filter-container-coder input {
+  width: 30%;
+}
+
+.filter-container-coder button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+}
+
+.filter-container-coder button:hover {
+  background-color: #45a049;
+}
+
+/* Code Practice Table */
+.questions-of-code table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.questions-of-code table th,
+.questions-of-code table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.questions-of-code table th {
+  background-color: #f1f1f1;
+}
+
+.questions-of-code table td button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.questions-of-code table td button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Test Result & Hint Container (Removed, since we no longer have these) */
+.test-result,
+.hint-container {
+  display: none;
+}
+
+/* Removed Code Editor Container since we're only showing the list now */
+
+/* Additional styling for the buttons in the table */
+.questions-of-code table td button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.questions-of-code table td button:hover {
+  background-color: #e0e0e0;
+}

@@ -1,0 +1,87 @@
+.notepad-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .tools-container {
+    margin-bottom: 20px;
+  }
+  
+  .tool-btn {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+  }
+  .tool-btn:hover{
+    background: #e0defc;
+  }
+
+  .tool-btn img{
+    height: 25px;
+  }
+
+
+  
+  .color-picker {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .color-btn {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+  }
+
+ 
+  
+  .shapes-popup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+  }
+  
+  .close-btn {
+    color: black;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .shapes-options {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .shape-option {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+  }
+  
+  .shape-option img{
+    height: 20px;
+  }
