@@ -34,13 +34,19 @@ const ResumeAnalyzerPage = () => {
   }, [resumeText]);
 
   const analyzeResume = async (text) => {
+    const token = localStorage.getItem('token');
     try {
-      const response = await axios.post(`${config.apiUrl}/ai/analyze-resume`, { resumeText: text });
-
+      const response = await axios.post(
+        `${config.apiUrl}/ai/analyze-resume`,
+        { resumeText: text }, // Request body
+        { headers: { Authorization: `Bearer ${token}` } } // Headers
+      );
+  
+      console.log('Resume Analysis Response:', response.status, response.data);
       setAtsScore(response.data.atsScore);
       setRecommendation(response.data.recommendation);
-
-      if (response.data.atsScore === 'N/A' || response.data.atsScore === null) {
+  
+      if (!response.data.atsScore || response.data.atsScore === 'N/A') {
         setNotification({
           show: true,
           message: 'Error: ATS score is unavailable. Please re-upload the resume.',
@@ -53,19 +59,38 @@ const ResumeAnalyzerPage = () => {
           type: 'success'
         });
       }
-
+  
       setShowResult(true);
-      setLoading(false); // Set loading to false once data is fetched
+      setLoading(false);
     } catch (error) {
       console.error('Error analyzing resume:', error);
-      setNotification({
-        show: true,
-        message: 'Error: Could not analyze resume. Please try again.',
-        type: 'error'
-      });
-      setLoading(false); // Set loading to false on error as well
+  
+      if (error.response) {
+        if (error.response.status === 404) {
+          setNotification({
+            show: true,
+            message: 'Error: Resume analysis service not found. Please try again later.',
+            type: 'error'
+          });
+        } else {
+          setNotification({
+            show: true,
+            message: `Error: ${error.response.data?.message || 'Could not analyze resume. Please try again.'}`,
+            type: 'error'
+          });
+        }
+      } else {
+        setNotification({
+          show: true,
+          message: 'Error: Network issue. Please check your connection and try again.',
+          type: 'error'
+        });
+      }
+  
+      setLoading(false);
     }
   };
+  
 
   // Function to handle file upload
   const handleFileUpload = (file) => {

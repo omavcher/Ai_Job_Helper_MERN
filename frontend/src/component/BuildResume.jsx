@@ -69,24 +69,38 @@ const BuildResume = () => {
   };
 
   const handleDownloadPDF = () => {
+    // Check if all required fields are filled
+    if (
+      !userDetails.name ||
+      !userDetails.email ||
+      !resumeData.position ||
+      !resumeData.company ||
+      !resumeData.city ||
+      !resumeData.state ||
+      !resumeData.startDate ||
+      !resumeData.endDate ||
+      resumeData.skills.length === 0 ||
+      resumeData.education.length === 0
+    ) {
+      setNotification({
+        show: true,
+        message: 'Please fill in all required fields before downloading the resume.',
+        type: 'info'
+      });
+      return;
+    }
+  
     const doc = new jsPDF();
-
-    // Capture resume content from the preview area
     const resumeContent = document.querySelector('.resume-doc');
-
-    // Adjusting the document size and scaling it to fit content
-    const margin = 5;  // Margin for the document
+    const margin = 5;
     const pageWidth = doc.internal.pageSize.getWidth() - margin * 2;
     const pageHeight = doc.internal.pageSize.getHeight() - margin * 2;
-
-    // Set font sizes for the resume
-    doc.setFontSize(2);  // Default font size
-    doc.setFont('helvetica', 'normal');  // Font family
-
-    // Convert the resume content to PDF and scale it
+  
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+  
     doc.html(resumeContent, {
       callback: function (doc) {
-        // Save the generated PDF
         doc.save(`${userDetails.name.replace(/\s+/g, '_')}_resume.pdf`);
         setNotification({
           show: true,
@@ -97,9 +111,10 @@ const BuildResume = () => {
       x: margin,
       y: margin,
       width: pageWidth,
-      windowWidth: 500,  // Control the scaling of the content in the preview area
+      windowWidth: 500,
     });
   };
+  
 
   // Add this function to handle theme color change
   const handleThemeChange = (color) => {

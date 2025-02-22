@@ -64,7 +64,7 @@ const Signup = () => {
   };
 
   return (
-    <div style={{width:'1320px'}} className="flex justify-center items-center min-h-screen bg-white p-4">
+    <div style={{width:'100%'}} className="flex justify-center items-center min-h-screen  p-4">
       <Notification
         message={notification.message}
         type={notification.type}

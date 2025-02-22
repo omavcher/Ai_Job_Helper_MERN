@@ -5,6 +5,7 @@ const api = axios.create({
   timeout: 10000, // Request timeout (10 seconds)
 });
 
+
 // Optional: Add request/response interceptors for logging, token handling, etc.
 api.interceptors.request.use(
   (config) => {

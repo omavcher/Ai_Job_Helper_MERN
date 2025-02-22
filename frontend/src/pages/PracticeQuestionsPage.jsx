@@ -6,6 +6,7 @@ import './PracticeQuestionsPage.css';
 import axios from 'axios'; // We can use axios, but in this case, fetch is used
 import config from '../api/config';
 import LoadingSpinner from '../component/LoadingSpinner';
+import Notification from '../components/Notification';
 
 const PracticeQuestionsPage = () => {
   const [selectedRole, setSelectedRole] = useState('');
@@ -25,6 +26,8 @@ const PracticeQuestionsPage = () => {
   const [showAnswerSection, setShowAnswerSection] = useState(false);
   const [aiRespose, setAiRespose] = useState('');
   const [showAiResposeing, setshowAiResposeing] = useState(false);
+  const [notification, setNotification] = useState({ show: false, message: "", type: "" });
+  const token = localStorage.getItem('token');
 
   function formatAdvice(advice) {
     // Split the advice by '**' to handle line breaks and bold text
@@ -112,37 +115,61 @@ const PracticeQuestionsPage = () => {
   };
 
   const handleSubmitAnswer = async () => {
-    if (!selectedQuestion || !answer) return; 
+    if (!selectedQuestion || !answer) return;
   
     setShowTimerOver(false);
   
     try {
       const storedJobType = localStorage.getItem('job_type');
-      const response = await axios.post(`${config.apiUrl}/ai/interview-ai-res`, {
-        question: selectedQuestion.question,
-        difficulty: selectedQuestion.difficulty,
-        answer: answer,
-        storedJobType,
-      });
-
-console.log(response.data);
-setshowAiResposeing(true);
-setAiRespose(response.data);
-
+      const response = await axios.post(
+        `${config.apiUrl}/ai/interview-ai-res`,
+        {
+          question: selectedQuestion.question,
+          difficulty: selectedQuestion.difficulty,
+          answer: answer,
+          storedJobType,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
   
-      if (response.status === 200) {
-      } else {
-        alert('Failed to submit answer');
-      }
+      console.log(response.data);
+      setshowAiResposeing(true);
+      setAiRespose(response.data);
+  
     } catch (error) {
       console.error('Error submitting answer:', error);
-      alert('An error occurred while submitting the answer');
+  
+      // ✅ Corrected error handling
+      if (error.response) {
+        if (error.response.status === 403) {
+          setNotification({
+            show: true,
+            message: "⚠️ Quota exceeded. Upgrade to submit answer.",
+            type: "error",
+          });
+        } else {
+          setNotification({
+            show: true,
+            message: "❌ Failed to submit answer. Please try again.",
+            type: "error",
+          });
+        }
+      } else {
+        setNotification({
+          show: true,
+          message: "🚨 Network error. Please check your connection.",
+          type: "error",
+        });
+      }
     }
   
-    setIsAnswering(false); 
-    setAnswer(''); 
-    setShowAnswerSection(false); 
+    setIsAnswering(false);
+    setAnswer('');showQuestionList(true);
+    setShowAnswerSection(false);
   };
+  
 
   const handleBackToQuestionList = () => {
     setIsAnswering(false);
@@ -182,6 +209,12 @@ setAiRespose(response.data);
 
   return (
     <div className="practice-page-container">
+      <Notification
+        message={notification.message}
+        type={notification.type}
+        isVisible={notification.show}
+        onClose={() => setNotification({ ...notification, show: false })}
+      />
 {showAiResposeing && (
   <div className='practice-page-ai-ans-container'>
   <header>

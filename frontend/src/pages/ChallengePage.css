@@ -340,3 +340,47 @@
   white-space: pre-wrap; /* To keep the formatting of the output */
   word-wrap: break-word;
 }
+
+
+@media (max-width: 768px) {
+  .challenge-page-container{
+    padding: 0;
+  }
+.chllange-top-hearder-container{
+  width: 100%;
+}
+.chllange-top-hearder-tank-11 button img{
+  display: none;
+}
+.page-content {
+  flex-direction: column;
+  gap: 0;
+}
+.left-pane{
+  min-width: 0;
+  width: 453px;
+}
+
+.right-pane{
+  margin-bottom: 5rem;
+}
+.note-pad-34btn6{
+  display: none;
+}
+.cd-pd93{
+  width: 18rem;
+  font-size: 1rem;
+}
+.challenge-details h3{
+  margin-bottom: 0;
+}
+.code-playground-header-container {
+ width: 85%;
+ gap: 10px;
+}
+.chlladproblem-list {
+ width: 320px;
+}
+
+
+}

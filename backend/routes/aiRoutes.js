@@ -1,35 +1,97 @@
 const express = require('express');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 require('dotenv').config(); 
+const authenticateToken = require('../middleware/authVerify'); 
+const User = require('../models/User');
+
+
 
 const router = express.Router();
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-router.get('/ask', async (req, res) => {
+router.post('/ask-ai', authenticateToken, async (req, res) => {
   try {
-    const prompt = "give me the c langee dsa question with ans";
+    const userId = req.user.userId;
+    const user = await User.findById(userId);
 
-    // Generate AI response
-    const result = await model.generateContent(prompt);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
 
-    // Extract the AI response safely
-    const aiResponse = result.response?.candidates?.[0]?.content || "No response received.";
+    let updatedQuota = user.quota; // Store the original quota
+    console.log("Original quota:", updatedQuota);
+    console.log("User subscription:", user.subscription);
 
-    // Send response to client
-    res.json({ answer: aiResponse });
+    if (user.subscription === "free") {
+      if (user.quota <= 0) {
+        return res.status(403).json({ message: "Quota exceeded. Upgrade to premium for unlimited access." });
+      }
+
+      // ✅ Ensure quota is reduced properly
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        { $inc: { quota: -1 } },
+        { new: true }
+      ).exec(); // 🔥 Ensure query execution
+
+      if (!updatedUser) {
+        return res.status(500).json({ message: "Failed to update quota." });
+      }
+
+      updatedQuota = updatedUser.quota; // ✅ Use updated quota
+      console.log("Updated quota:", updatedQuota);
+    }
+
+    try {
+      const { message } = req.body;
+
+      const prompt = `Act as my career guide and provide concise, paragraph-style responses as if we are having a friendly chat. Keep the answers short, clear, and to the point. My message: ${message}`;
+
+      const result = await model.generateContent(prompt);
+
+      const aiResponse =
+        result.response?.candidates?.[0]?.content?.parts?.[0]?.text ||
+        "Sorry, I couldn't generate a response.";
+
+      console.log("AI Response:", aiResponse);
+
+      res.json({
+        response: aiResponse,
+        quota: updatedQuota, 
+      });
+
+    } catch (error) {
+      console.error("Error generating AI response:", error);
+      res.status(500).json({ message: "Error generating response", error: error.message });
+    }
 
   } catch (error) {
-    console.error("Error generating AI response:", error);
-    res.status(500).json({ message: "Error generating AI response", error: error.message });
+    console.error("Error in /ask-ai route:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
   }
 });
 
 
 
 
-router.post('/analyze-resume', async (req, res) => {
+
+
+router.post('/analyze-resume',authenticateToken, async (req, res) => {
+  const userId = req.user.userId;
+  const user = await User.findById(userId);
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+}
+
+if (user.subscription === "free") {
+    if (user.quota <= 0) {
+        return res.status(403).json({ message: "Quota exceeded. Upgrade to premium for unlimited access." });
+    }
+    user.quota -= 1;
+    await user.save();
+}
   try {
     const { resumeText } = req.body;
     const jobfield = "Web Developer"; // You can make this dynamic if needed
@@ -66,27 +128,6 @@ router.post('/analyze-resume', async (req, res) => {
 
 
 
-router.post('/ask-ai', async (req, res) => {
-  try {
-    const { message } = req.body;
-
-    const prompt = `Act as my career guide and provide concise, paragraph-style responses as if we are having a friendly chat. Keep the answers short, clear, and to the point. My message: ${message}`;
-
-    const result = await model.generateContent(prompt);
-
-    const aiResponse = result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response.";
-
-    console.log(aiResponse);
-
-    res.json({
-      response: aiResponse
-    });
-
-  } catch (error) {
-    console.error("Error generating AI response:", error);
-    res.status(500).json({ message: "Error generating response", error: error.message });
-  }
-});
 
 
 
@@ -148,27 +189,48 @@ router.post('/get-roadmap', async (req, res) => {
 
 
 
-router.post('/compile', async (req, res) => {
+router.post('/compile', authenticateToken, async (req, res) => {
   try {
     const { language, script } = req.body;
+    const userId = req.user.userId;
+    const user = await User.findById(userId);
 
-    const prompt = `You are a coding assistant. You need to analyze and run the following code written in ${language}. Here is the code:\n\n${script}\n\nPlease execute and provide the output of the code nothing other text just output only.`;
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    if (user.subscription === "free") {
+      if (user.quota <= 0) {
+        return res.status(403).json({ message: "Quota exceeded. Upgrade to premium for unlimited access." });
+      }
+
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        { $inc: { quota: -1 } }, 
+        { new: true }
+      );
+
+      if (!updatedUser) {
+        return res.status(500).json({ message: "Failed to update quota." });
+      }
+    }
+
+    const prompt = `You are a coding assistant. You need to analyze and run the following code written in ${language}. Here is the code:\n\n${script}\n\nPlease execute and provide the output of the code, nothing else, just the output only.`;
 
     const result = await model.generateContent(prompt);
-
     const aiResponse = result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response.";
 
     function getCodeOutput(aiResponse) {
       // Remove the triple backticks and return the content
-      const output = aiResponse.replace(/```/g, '').trim();
-      return output;
+      return aiResponse.replace(/```/g, '').trim();
     }
 
     // Clean the response before sending it
     const cleanedOutput = getCodeOutput(aiResponse);
 
     res.json({
-      output: cleanedOutput
+      output: cleanedOutput,
+      quota: user.quota - 1  // Show updated quota after deduction
     });
 
   } catch (error) {
@@ -178,12 +240,42 @@ router.post('/compile', async (req, res) => {
 });
 
 
-
-router.post('/submit-problem', async (req, res) => {
+router.post('/submit-problem', authenticateToken, async (req, res) => {
   try {
+    const userId = req.user.userId;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    let updatedQuota = user.quota; // Store initial quota
+    console.log("Original quota:", updatedQuota);
+
+    // Quota check for free users
+    if (user.subscription === "free") {
+      if (user.quota <= 0) {
+        return res.status(403).json({ message: "Quota exceeded. Upgrade to premium for unlimited access." });
+      }
+
+      // Deduct quota
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        { $inc: { quota: -1 } },
+        { new: true }
+      );
+
+      if (!updatedUser) {
+        return res.status(500).json({ message: "Failed to update quota." });
+      }
+
+      updatedQuota = updatedUser.quota; // ✅ Update quota after deduction
+      console.log("Updated quota:", updatedQuota);
+    }
+
     const { language, script, description, input, output } = req.body;
 
-    // Construct a dynamic prompt for the code execution system
+    // Construct AI prompt
     const prompt = `
     I have a coding challenge in ${language}. The problem is described as follows:
     Problem: ${description}
@@ -202,21 +294,23 @@ router.post('/submit-problem', async (req, res) => {
     const result = await model.generateContent(prompt);
 
     const aiResponse = result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response.";
+
     function getCodeOutput(aiResponse) {
       // Remove the triple backticks and return the content
-      const output = aiResponse.replace(/```/g, '').trim();
-      return output;
+      return aiResponse.replace(/```/g, '').trim();
     }
-    // Use getCodeOutput to clean the AI response
+
+    // Clean AI response
     const cleanedOutput = getCodeOutput(aiResponse);
 
     const resultData = {
       result: cleanedOutput.includes("successful") ? "successful" : "fail",
       output: cleanedOutput,
-      conclusion: cleanedOutput.includes("successful") ? "The code works as expected." : "The code did not produce the expected output."
+      conclusion: cleanedOutput.includes("successful") ? "The code works as expected." : "The code did not produce the expected output.",
+      quota: updatedQuota, // ✅ Send updated quota in response
     };
-console.log(resultData);
 
+    console.log(resultData);
     res.json(resultData);
 
   } catch (error) {
@@ -228,8 +322,39 @@ console.log(resultData);
 
 
 
-router.post('/interview-ai-res', async (req, res) => {
+router.post('/interview-ai-res', authenticateToken, async (req, res) => {
   try {
+    const userId = req.user.userId;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    let updatedQuota = user.quota; // Store initial quota
+    console.log("Original quota:", updatedQuota);
+
+    // Quota check for free users
+    if (user.subscription === "free") {
+      if (user.quota <= 0) {
+        return res.status(403).json({ message: "Quota exceeded. Upgrade to premium for unlimited access." });
+      }
+
+      // Deduct quota
+      const updatedUser = await User.findByIdAndUpdate(
+        userId,
+        { $inc: { quota: -1 } },
+        { new: true }
+      );
+
+      if (!updatedUser) {
+        return res.status(500).json({ message: "Failed to update quota." });
+      }
+
+      updatedQuota = updatedUser.quota; // ✅ Update quota after deduction
+      console.log("Updated quota:", updatedQuota);
+    }
+
     const { question, answer, storedJobType } = req.body;
 
     const prompt = `
@@ -238,7 +363,7 @@ router.post('/interview-ai-res', async (req, res) => {
       For practice, I wrote this answer: 
       "${answer}"
     
-      Please provide feedback in the following format dont change just give variable == :
+      Please provide feedback in the following format, don't change it, just return the values as required:
       
         result: "right" or "wrong", 
         area_to_improve: "Mention the areas where the answer could be improved", 
@@ -246,22 +371,22 @@ router.post('/interview-ai-res', async (req, res) => {
     `;
 
     const result = await model.generateContent(prompt);
-  
-    // Extract the response from the result
+
+    // Extract AI response
     const aiResponse = result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't generate a response.";
     
-    console.log("Raw AI Response:", aiResponse); // Log raw response for debugging
+    console.log("Raw AI Response:", aiResponse);
 
-    // Clean up the output to remove unwanted 'json' prefix
+    // Clean AI response
     const cleanedOutput = aiResponse.replace(/^json\s*/i, '').trim();
     console.log("Cleaned Output:", cleanedOutput);
 
-    // Since the cleanedOutput is a plain string and looks like an object structure, we can directly return it
-    // Split the cleanedOutput into different sections
+    // Parse response into an object
     const resultObj = {
       result: cleanedOutput.includes("result:") ? cleanedOutput.split("result:")[1].split(",")[0].trim().replace(/"/g, '') : "unknown",
       area_to_improve: cleanedOutput.includes("area_to_improve:") ? cleanedOutput.split("area_to_improve:")[1].split(",")[0].trim().replace(/"/g, '') : "No details available",
-      advise: cleanedOutput.includes("advise:") ? cleanedOutput.split("advise:")[1].trim().replace(/"/g, '') : "No advice provided"
+      advise: cleanedOutput.includes("advise:") ? cleanedOutput.split("advise:")[1].trim().replace(/"/g, '') : "No advice provided",
+      quota: updatedQuota, // ✅ Send updated quota in response
     };
     
     console.log("Formatted Response:", resultObj);

@@ -1,7 +1,7 @@
 .side-menu {
   width: 220px;
   height: 100vh;
-  background: white;
+  background: #fbfbfa;
   padding: 10px;
   position: fixed;
   left: 0;
@@ -258,6 +258,103 @@ background-image: linear-gradient(160deg, #7671e0 0%, #d6d2f6 100%);
   background-color: #8d85fe;box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
+.side-menu-tire-container{
+  margin-bottom: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    background-color: white;
+    border: 1px solid rgb(217, 217, 217);
+    border-radius: 8px;
+    padding: 0.9rem;
+}
+.side-menu-tire-container h2{
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.side-menu-tire-container p{
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.side-menu-tire-container-buttonx{
+  background-color: black;
+  width: 100%;
+  color: white;
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;  
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-popupx {
+  position: fixed;
+  top: 40px;
+  left: 242px;
+  width: 13rem;
+  height: 8rem;
+  background-color: white;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 10px;
+  border: 1px solid rgba(128, 128, 128, 0.4);
+}
+.popup-user-info-container{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.114);
+}
+.popup-user-infospan{
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
+}
+
+.popup-user-infospan h2{
+   font-size: 0.8rem;
+   font-weight: bold;
+}
+.popup-user-infospan span{
+  font-size: 0.8rem;
+}
+.popup-user-info-container img{
+  color: white;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.pop-btn-s4x {
+  background-color: white;
+  width: 95%;
+  color: black;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: start;
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+}
+
+.pop-btn-s4x:hover {
+  background-color: #f0f0f0;
+
+}
+
+
+
+
+
+
 
 
   @media (max-width: 428px) {
@@ -303,4 +400,15 @@ width: 40px;
   .side-menu {
     display: none; /* Hide the side menu on mobile */
   }
+}
+
+
+@keyframes flash {
+  0% { color: red; }
+  50% { color: white; }
+  100% { color: red; }
+}
+
+.flash-red {
+  animation: flash 2s infinite;
 }

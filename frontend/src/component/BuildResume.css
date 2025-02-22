@@ -333,3 +333,21 @@
   }
 
   
+
+
+
+
+  @media (max-width: 768px) {
+
+    
+    .preview-resume-left-section8{
+      width: 100%;
+      padding: 0.1rem;
+
+    }
+
+
+    .build-resume-container-build{
+      padding: 0;
+    }
+  }  

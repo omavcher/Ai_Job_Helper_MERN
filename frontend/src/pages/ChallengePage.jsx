@@ -9,7 +9,7 @@ import './ChallengePage.css';
 import Notepad from '../component/NotePad';
 import config from '../api/config'
 import LoadingSpninner from '../component/LoadingSpinner';
-
+import Notification from '../components/Notification';
 const ChallengePage = () => {
   const problemListRef = useRef(null); // Reference for the problem list container
   const { id } = useParams(); // Capture the challenge ID from the URL
@@ -29,6 +29,8 @@ const ChallengePage = () => {
   const navigate = useNavigate(); // Hook to navigate programmatically
   const [submitResult, setSubmitResult] = useState(''); // Compilation output
   const [problems, setProblems] = useState([]); // State for storing the problem data
+  const token = localStorage.getItem('token');
+  const [notification, setNotification] = useState({ show: false, message: "", type: "" });
 
 
   const handleNavigateNext = () => {
@@ -99,7 +101,6 @@ useEffect(() => {
         const response = await axios.post(`${config.apiUrl}/code/code-problem-by-id`, { id });
 
         const challengeData = response.data;
-console.log(response.data);
 
         if (challengeData) {
           setChallenge(challengeData);
@@ -114,21 +115,36 @@ console.log(response.data);
 
   const handleRunCode = async () => {
     setIsRunning(true);
+  
     try {
-
-
-      const response = await axios.post(`${config.apiUrl}/ai/compile`, {
-        script: code,
-        language,
-      });
-
+      const response = await axios.post(`${config.apiUrl}/ai/compile`, 
+        {
+          script: code,
+          language,
+        }, 
+        { 
+          headers: { Authorization: `Bearer ${token}` } 
+        }
+      );
+  
       setOutput(response.data.output); 
     } catch (error) {
-      setOutput('Error executing code');
+      console.error("Error executing code:", error);
+  
+      if (error.response && error.response.status === 403) {
+        setNotification({
+          show: true,
+          message: "⚠️ Quota exceeded. Upgrade to run more code.",
+          type: "error",
+        });
+      } else {
+        setOutput("Error executing code");
+      }
     } finally {
       setIsRunning(false);
     }
   };
+  
 
 
   const handleSubmitProblem = async () => {
@@ -140,11 +156,22 @@ console.log(response.data);
         description: challenge.description,
         input: challenge.input,
         output: challenge.output,
+      }, 
+      { 
+        headers: { Authorization: `Bearer ${token}` } 
       });
 
       setSubmitResult(response.data);
     } catch (error) {
-      setOutput('Error executing code');
+      if (error.response && error.response.status === 403) {
+        setNotification({
+          show: true,
+          message: "⚠️ Quota exceeded. Upgrade to submit code.",
+          type: "error",
+        });
+      } else {
+        setOutput("Error executing code");
+      }      
     } finally {
       setIsRunning(false);
     }
@@ -188,6 +215,12 @@ console.log(response.data);
 
   return (
     <div className="challenge-page-container">
+      <Notification
+        message={notification.message}
+        type={notification.type}
+        isVisible={notification.show}
+        onClose={() => setNotification({ ...notification, show: false })}
+      />
 <div className='chllange-top-hearder-container'>
 
 <div  className='chllange-top-hearder-tank-11'>
@@ -271,7 +304,7 @@ console.log(response.data);
 <div className={`chllange-top-hearder-tank-22 ${showProblemList ? 'blurred' : ''}`}>
   <button onClick={handleRunCode}   style={{color:"black",display:"flex",alignItems:"center",gap:"10px"}}><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAABRklEQVR4nO2ZMU7EMBBFP0JAA1VIpP8tGpQqBU1KbsAhuAIFHIArUNJS0nKBvcByAGpaum1QxJpig0INdpyx/KRpIz3Z8XyPgUKhUPiNpLuu6w5hHUme5Jtz7grWRTQWyZemac5hXUQ7mU9JD1VVncCyiCahd+fcNYA9WBbRVCvn3AUyEPGSviQ9kTyFcRE/brcPkjcA9mFZRJPQK8lLWBfRrrYknyWdwbiIH2tD8r5t2yPrIn4R6UCBRJKnAwUWSZYOFEEkSTpQRJFZ04HmEfGSBkmP0dLBjCI+ajqYW0Sx0kEqEYVOB0VE/16NtemtxQx+9iGH43dluiGajygcQ2Nd18fRBX6IIGE7xjODi9XG+lV3m8PwYW16HMQMBnRD1K4cguyH2LT+rMAUXTkEi+jKIVhEVw6BpNu+7w+CfKxQKBTwR74BypBtskDnV4gAAAAASUVORK5CYII=" alt="play--v1"/> Run</button>
   <button onClick={handleSubmitProblem}  >Submit</button>
-  <button onClick={() => setShowNotepad(!showNotepad)}><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAeElEQVR4nO2WSw6AIAxE5xJUmYT7X8igt9G4YGsiVNA4LyGEDX3Q8gGEeCMk9yfa9wTghASoFFBFSB3DXRcRf3EVc/RjxGuB3E0AAMxsIrmc4xjjllJiNwFrCe6UgrX0IYT57jzwqIGqlRdav15NwR0EctW2C4FBHLba4UHa0IsFAAAAAElFTkSuQmCC" alt="note"/></button>
+  <button className='note-pad-34btn6' onClick={() => setShowNotepad(!showNotepad)}><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAeElEQVR4nO2WSw6AIAxE5xJUmYT7X8igt9G4YGsiVNA4LyGEDX3Q8gGEeCMk9yfa9wTghASoFFBFSB3DXRcRf3EVc/RjxGuB3E0AAMxsIrmc4xjjllJiNwFrCe6UgrX0IYT57jzwqIGqlRdav15NwR0EctW2C4FBHLba4UHa0IsFAAAAAElFTkSuQmCC" alt="note"/></button>
 </div>
 
 <div className='chllange-top-hearder-tank-33'></div>
@@ -299,7 +332,7 @@ console.log(response.data);
             </div>
 
 
-            <p className='mt-3'> {challenge.description}</p>
+            <p className='mt-3 cd-pd93'> {challenge.description}</p>
 
             <div className="challenge-example mt-4">
               <h3>Example:</h3>

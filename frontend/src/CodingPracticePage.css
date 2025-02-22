@@ -1,10 +1,11 @@
 /* General Container */
 .coding-practice-container {
-  width:105%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  padding: 10px;
 }
 
 /* Level Container Box */
@@ -13,6 +14,7 @@
   margin-bottom: 30px;
   padding: 20px;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 .filter-container-coder {
@@ -20,6 +22,7 @@
   justify-content: space-between;
   gap: 15px;
   margin-bottom: 20px;
+  flex-wrap: wrap;
 }
 
 .filter-container-coder select,
@@ -35,6 +38,7 @@
 .filter-container-coder select,
 .filter-container-coder input {
   width: 30%;
+  min-width: 120px;
 }
 
 .filter-container-coder button {
@@ -43,6 +47,7 @@
   border: none;
   cursor: pointer;
   width: 20%;
+  min-width: 100px;
 }
 
 .filter-container-coder button:hover {
@@ -54,6 +59,7 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  overflow-x: auto;
 }
 
 .questions-of-code table th,
@@ -78,22 +84,34 @@
   background-color: #e0e0e0;
 }
 
-/* Test Result & Hint Container (Removed, since we no longer have these) */
-.test-result,
-.hint-container {
-  display: none;
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .filter-container-coder {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filter-container-coder select,
+  .filter-container-coder input,
+  .filter-container-coder button {
+    width: 100%;
+  }
+
+  .questions-of-code table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }
 
-/* Removed Code Editor Container since we're only showing the list now */
+@media screen and (max-width: 480px) {
+  .level-container-box {
+    width: 100%;
+    padding: 10px;
+  }
 
-/* Additional styling for the buttons in the table */
-.questions-of-code table td button {
-  background-color: #f0f0f0;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-}
-
-.questions-of-code table td button:hover {
-  background-color: #e0e0e0;
+  .questions-of-code table th,
+  .questions-of-code table td {
+    padding: 8px;
+  }
 }

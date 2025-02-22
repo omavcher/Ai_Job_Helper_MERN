@@ -12,14 +12,15 @@ body {
     width: 100%;
   }
   
-
-
-
-  @media (max-width: 768px) { /* Adjust the max-width as needed */
+  @media (max-width: 633px) { /* Adjust the max-width as needed */
     .main-content {
       margin-left: 0; /* Adjust based on the sidebar width */
       padding: 0px;
       flex: 1;
+      /* width: 117%; */
       width: 100%;
+
     }
   }
+
+

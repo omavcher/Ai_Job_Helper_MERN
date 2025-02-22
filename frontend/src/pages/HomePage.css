@@ -4,10 +4,7 @@
 }
 
 
-.header-info-cointainer-hm{
-    margin-top: 3rem;
-    margin-left: 1rem;
-}
+
 
 .header-info-cointainer-hm p{
   font-size: 12px;
@@ -106,7 +103,6 @@
 /* Add farmer-themed background animation */
 
 
-  
 
 @media (max-width: 768px) { /* Adjust the max-width as needed */
     .homepage-section-onainer {
@@ -139,4 +135,98 @@
         width: 275px;
     }
 
+
+
+
+  }
+
+
+  .header-info-container-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    color: black;
+    font-family: Arial, sans-serif;
+    flex-wrap: wrap;
+  }
+  
+  .header-info-container-section-span1 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .header-info-container-section-span2 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .auth-links {
+    gap: 10px;
+  }
+  
+
+
+  
+  .logo-container h1 {
+    font-size: 1.8rem;
+    margin-right: 10px;
+    font-family: 'Exo 2', serif;
+    font-weight: bold;
+    margin-bottom: 0;
+    margin-right: 0;
+  }
+  
+  .logo {
+    height: 40px;
+  }
+  
+  @media (max-width: 768px) {
+    .header-info-container-section {
+      flex-direction: column-reverse;
+      text-align: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .auth-button{
+        padding: 0.2rem 0.4rem;
+    }
+
+    .header-info-container-section-span1 {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+      }
+    .header-info-container-section-span2 {
+      flex-direction: row;
+      width: 100%;
+      justify-content: center;
+      gap: 8px;
+    }
+  
+    .logo-container h1 {
+      font-size: 1.5rem;
+    }
+  
+    .logo {
+      height: 35px;
+    }
+  }
+  
+
+  .auth-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background: #007bff;
+    transition: 0.3s;
+  }
+  
+  .auth-link:hover {
+    background: #0056b3;
   }

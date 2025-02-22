@@ -62,9 +62,13 @@ router.get('/user', authenticateToken, async (req, res) => {
     
     // Send back the user data
     res.json({
+      id: user._id,
       name: user.name,
       email: user.email,
-      job_type: user.job_type
+      job_type: user.job_type,
+      profileImage: user.profileImage,
+      userSubscription: user.subscription,
+      userQuota: user.quota
     });
   } catch (error) {
     console.error(error); // Log the error for debugging
@@ -75,9 +79,85 @@ router.get('/user', authenticateToken, async (req, res) => {
 router.get('/verify-token', authenticateToken, (req, res) => {
   return res.status(200).json({
     message: 'Token is valid',
-    user: req.user // Send user information decoded from the token
+    user: req.user 
   });
 });
+
+
+router.put('/user/update-setting', authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const { name, profileImage } = req.body;
+
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { name, profileImage },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    res.json({ name: user.name, profileImage: user.profileImage });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error updating user settings' });
+  }
+});
+
+
+
+
+
+
+router.get('/quota', authenticateToken, async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // If user is on a free plan and has no quota left
+    if (user.subscription === "free" && user.quota <= 0) {
+      return res.status(403).json({ 
+        message: "Quota exceeded. Upgrade to premium for unlimited access.", 
+        quota: user.quota 
+      });
+    }
+
+    // Return quota details for the user
+    res.status(200).json({ 
+      quota: user.quota, 
+      subscription: user.subscription 
+    });
+
+  } catch (error) {
+    console.error("Error fetching quota:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+
+
+
+
+router.post('/user/upgradeto-paid', authenticateToken , async (req, res) => {
+  const userId = req.user.id;
+  const user = await User.findById(userId);
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  user.subscription = "paid";
+  user.quota = Infinity; // No limit for paid users
+  await user.save();
+
+  res.json({ message: "Subscription upgraded to premium!" });
+});
+
 
 
 module.exports = router;
