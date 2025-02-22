@@ -1,0 +1,40 @@
+.mobile-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid #ddd;
+  }
+  
+  .footer-icon {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .footer-icon i {
+    pointer-events: none;
+  }
+  
+
+@media (max-width: 768px) {
+    .mobile-footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: #fff;
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 0;
+      border-top: 1px solid #ddd;
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .mobile-footer {
+      display: none;
+    }
+  }
+  

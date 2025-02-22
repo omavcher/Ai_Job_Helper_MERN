@@ -1,0 +1,155 @@
+.settings-container-page-x3 {
+   width: 100% ;  
+  margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.settings-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.settings-subtitle {
+    color: gray;
+    margin-bottom: 20px;
+}
+
+.settings-card {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.162);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.avatar-43-section-sett6 {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.avatar-43 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.change-avatar-43-btn {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background: #f8f8f8;
+    cursor: pointer;
+}
+
+.avatar-43-info {
+    font-size: 12px;
+    color: gray;
+}
+
+.input-section {
+    margin-top: 20px;
+}
+
+.input-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.settings-car-ds34 {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.settings-car-ds34 button {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    background: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.settings-car-ds34 button:hover {
+    background: rgb(223, 223, 223);
+}
+
+.save-btn-setting-btn3 {
+    background-color: black;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: start;
+    font-size: 0.9rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.save-btn-setting-btn3:hover {
+    background-color: #333;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .settings-container-page-x3 {
+        padding: 15px;
+    }
+    .settings-title {
+        font-size: 22px;
+    }
+    .settings-card {
+        padding: 15px;
+    }
+    .avatar-43-section-sett6 {
+        flex-direction: column;
+        align-items: center;
+    }
+    .settings-car-ds34 {
+        align-items: center;
+        text-align: center;
+    }
+    .change-avatar-43-btn {
+        width: 100%;
+    }
+    .save-btn-setting-btn3 {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .settings-title {
+        font-size: 20px;
+    }
+    .settings-subtitle {
+        font-size: 14px;
+    }
+    .avatar-43 {
+        width: 80px;
+        height: 80px;
+    }
+    .change-avatar-43-btn {
+        font-size: 0.75rem;
+    }
+    .input-field {
+        font-size: 0.85rem;
+    }
+}
