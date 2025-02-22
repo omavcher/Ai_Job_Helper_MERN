@@ -18,10 +18,11 @@ const app = express();
 
 
 app.use(cors({
-  origin: 'http://localhost:5173', // Replace with your frontend URL if different
+  origin: process.env.FRONTEND_URL,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
 
 app.use(express.json()); // Parse incoming JSON requests
 app.use(helmet()); // Security headers
